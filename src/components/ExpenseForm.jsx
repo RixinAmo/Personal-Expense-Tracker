@@ -5,18 +5,10 @@ const ExpenseForm = () => {
   const { addExpense } = useExpenses();
   const [form, setForm] = useState({ title: "", amount: "", category: "Food", type: "Expense" });
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (!form.title || !form.amount) return;
-//     addExpense({ ...form, amount: parseFloat(form.amount) });
-//     setForm({ title: "", amount: "", category: "Food", type: "Expense" });
-//   };
-
 const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.title || !form.amount) return;
 
-    // If it's Income, remove category field
     const newEntry =
       form.type === "Income"
         ? { title: form.title, amount: parseFloat(form.amount), type: form.type }
@@ -24,7 +16,7 @@ const handleSubmit = (e) => {
 
     addExpense(newEntry);
 
-    // Reset form
+  
     setForm({ title: "", amount: "", category: "Food", type: "Expense" });
   };
 
@@ -45,16 +37,6 @@ const handleSubmit = (e) => {
         value={form.amount}
         onChange={(e) => setForm({ ...form, amount: e.target.value })}
       />
-      {/* <select
-        className="border p-2 rounded"
-        value={form.category}
-        onChange={(e) => setForm({ ...form, category: e.target.value })}
-      >
-        <option>Food</option>
-        <option>Travel</option>
-        <option>Bills</option>
-        <option>Shopping</option>
-      </select> */}
 
       <select
         className="border p-2 rounded"
